@@ -1,0 +1,11 @@
+@QtecAccounts_HostAddress = http://localhost:5142
+
+GET {{QtecAccounts_HostAddress}}/todos/
+Accept: application/json
+
+###
+
+GET {{QtecAccounts_HostAddress}}/todos/1
+Accept: application/json
+
+###
