@@ -1,6 +1,6 @@
 ﻿using FluentValidation.AspNetCore;
-using MediatR;
 using Microsoft.EntityFrameworkCore;
+using QtecAcc.Application;
 using QtecAcc.Application.Validations;
 using QtecAcc.Infrastructure;
 using System.Reflection;
@@ -20,8 +20,7 @@ namespace QtecAcc
 
             services.AddControllers()
                             .AddFluentValidation(fv => 
-                            fv.RegisterValidatorsFromAssemblyContaining<CreateAccountDtoValidator>()
-                            
+                            fv.RegisterValidatorsFromAssemblyContaining<CreateAccountCommandValidator>()
                             );
 
             services.AddEndpointsApiExplorer();
@@ -35,12 +34,8 @@ namespace QtecAcc
 
             services.AddScoped<IDbContext, ApplicationDbContext>();
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
-            services.AddMediatR(cfg=>
-            {
-                cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
-            });
 
-            // Optional CORS policy (example)
+            services.MediatorDependency();
             services.AddCors(options =>
             {
                 options.AddPolicy("AllowAll", builder =>

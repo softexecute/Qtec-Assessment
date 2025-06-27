@@ -7,6 +7,10 @@
       "RelativeMoniker": "D:0:0:{3AAA919A-9968-4602-843F-CD7F227DF195}|QtecAcc.Api\\QtecAcc.Api.csproj|solutionrelative:qtecacc.api\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{91298F19-070D-4AEE-B511-58EC4507C425}|QtecAcc.Application\\QtecAcc.Application.csproj|e:\\assessment task\\backend\\qtecacc.application\\validations\\createaccountdtovalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{91298F19-070D-4AEE-B511-58EC4507C425}|QtecAcc.Application\\QtecAcc.Application.csproj|solutionrelative:qtecacc.application\\validations\\createaccountdtovalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{3AAA919A-9968-4602-843F-CD7F227DF195}|QtecAcc.Api\\QtecAcc.Api.csproj|e:\\assessment task\\backend\\qtecacc.api\\controllers\\accountscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3AAA919A-9968-4602-843F-CD7F227DF195}|QtecAcc.Api\\QtecAcc.Api.csproj|solutionrelative:qtecacc.api\\controllers\\accountscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -36,14 +40,14 @@
               "RelativeDocumentMoniker": "QtecAcc.Api\\Startup.cs",
               "ToolTip": "E:\\Assessment Task\\Backend\\QtecAcc.Api\\Startup.cs",
               "RelativeToolTip": "QtecAcc.Api\\Startup.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAowBIAAAALAAAAAAAAAA==",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAowBoAAABCAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-27T03:48:47.263Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "QtecAcc.Api",
               "DocumentMoniker": "E:\\Assessment Task\\Backend\\QtecAcc.Api\\QtecAcc.Api.csproj",
               "RelativeDocumentMoniker": "QtecAcc.Api\\QtecAcc.Api.csproj",
@@ -57,6 +61,19 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "CreateAccountDtoValidator.cs",
+              "DocumentMoniker": "E:\\Assessment Task\\Backend\\QtecAcc.Application\\Validations\\CreateAccountDtoValidator.cs",
+              "RelativeDocumentMoniker": "QtecAcc.Application\\Validations\\CreateAccountDtoValidator.cs",
+              "ToolTip": "E:\\Assessment Task\\Backend\\QtecAcc.Application\\Validations\\CreateAccountDtoValidator.cs",
+              "RelativeToolTip": "QtecAcc.Application\\Validations\\CreateAccountDtoValidator.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-27T03:20:30.096Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "AccountsController.cs",
               "DocumentMoniker": "E:\\Assessment Task\\Backend\\QtecAcc.Api\\Controllers\\AccountsController.cs",
               "RelativeDocumentMoniker": "QtecAcc.Api\\Controllers\\AccountsController.cs",

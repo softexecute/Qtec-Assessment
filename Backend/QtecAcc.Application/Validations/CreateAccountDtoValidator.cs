@@ -1,15 +1,17 @@
 ﻿using FluentValidation;
+using QtecAcc.Application.Commands;
 using QtecAcc.Application.DTOs;
 
 
 namespace QtecAcc.Application.Validations
 {
-    public class CreateAccountDtoValidator : AbstractValidator<CreateAccountDto>
+    public class CreateAccountCommandValidator : AbstractValidator<CreateAccountCommand>
     {
-        public CreateAccountDtoValidator()
+        public CreateAccountCommandValidator()
         {
             RuleFor(x => x.Name)
                 .NotEmpty().WithMessage("Account name is required.")
+                .MinimumLength(3).WithMessage("Account name must be at least 3 characters.")
                 .MaximumLength(100);
 
             RuleFor(x => x.Type)

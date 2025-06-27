@@ -1,5 +1,10 @@
-/bn/
-/obj/
-/../bn/
-/../obj/
-/node_modules/
+# Ignore bin and obj folders recursively from root and all subfolders
+**/bin/*
+**/obj/*
+
+# Ignore node_modules from root and any subfolder
+**/node_modules/
+
+# Optional: ignore root-level bin/ and obj/ (redundant but explicit)
+bin/*
+obj/*

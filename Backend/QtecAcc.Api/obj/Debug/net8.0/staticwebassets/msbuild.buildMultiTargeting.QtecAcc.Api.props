@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\build\QtecAcc.Api.props" />
-</Project>
