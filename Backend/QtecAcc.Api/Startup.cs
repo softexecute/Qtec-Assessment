@@ -1,4 +1,5 @@
-﻿using FluentValidation.AspNetCore;
+﻿using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 using QtecAcc.Application;
 using QtecAcc.Application.Validations;
@@ -13,15 +14,18 @@ namespace QtecAcc
         {
             Configuration = configuration;
         }
+
+
         public void ConfigureServices(IServiceCollection services)
         {
 
-           
+            services.AddControllers();
 
-            services.AddControllers()
-                            .AddFluentValidation(fv => 
-                            fv.RegisterValidatorsFromAssemblyContaining<CreateAccountCommandValidator>()
-                            );
+            services.AddFluentValidationAutoValidation();
+            services.AddValidatorsFromAssemblyContaining<CreateAccountCommandValidator>();
+            services.AddValidatorsFromAssemblyContaining<CreateJournalCommandValidator>();
+    
+
 
             services.AddEndpointsApiExplorer();
             services.AddDbContext<ApplicationDbContext>(options =>

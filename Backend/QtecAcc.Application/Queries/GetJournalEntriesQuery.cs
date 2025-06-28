@@ -1,12 +1,8 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using QtecAcc.Infrastructure;
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace QtecAcc.Application.Queries
 {
@@ -28,7 +24,7 @@ namespace QtecAcc.Application.Queries
             await connection.OpenAsync(cancellationToken);
 
             using var command = connection.CreateCommand();
-            command.CommandText = "sp_GetJournalEntries";
+            command.CommandText = "sp_GetJournalsSummary";
             command.CommandType = CommandType.StoredProcedure;
 
             using var reader = await command.ExecuteReaderAsync(cancellationToken);
@@ -39,8 +35,7 @@ namespace QtecAcc.Application.Queries
                     Id = reader.GetInt32(reader.GetOrdinal("Id")),
                     Date = reader.GetDateTime(reader.GetOrdinal("Date")),
                     Description = reader.GetString(reader.GetOrdinal("Description")),
-                    TotalDebit = reader.GetDecimal(reader.GetOrdinal("TotalDebit")),
-                    TotalCredit = reader.GetDecimal(reader.GetOrdinal("TotalCredit"))
+                    TotalAmount = reader.GetDecimal(reader.GetOrdinal("TotalAmount"))
                 });
             }
 
@@ -51,8 +46,7 @@ namespace QtecAcc.Application.Queries
     {
         public int Id { get; set; }
         public DateTime Date { get; set; }
-        public string Description { get; set; }
-        public decimal TotalDebit { get; set; }
-        public decimal TotalCredit { get; set; }
+        public string? Description { get; set; }
+        public decimal TotalAmount { get; set; }
     }
 }

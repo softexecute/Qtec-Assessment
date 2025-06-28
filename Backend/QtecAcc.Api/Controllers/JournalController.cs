@@ -31,6 +31,16 @@ namespace QtecAcc.Api.Controllers
         {
             var result = await _mediator.Send(new GetJournalEntriesQuery());
             return Ok(result);
-        }
+        }  
+        // GET: api/journal/id
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get( int Id)
+        {
+            var result = await _mediator.Send(new GetJournalDetailsQuery() { Id = Id});
+            return Ok(result);
+        }       
+        
+        
+
     }
 }

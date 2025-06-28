@@ -41,5 +41,12 @@ namespace QtecAcc.Api.Controllers
 
             return Ok();
         }
+
+        [HttpGet("trial-balance")]
+        public async Task<IActionResult> TrialBalance()
+        {
+            var result = await _mediator.Send(new GetTrialBalanceQuery());
+            return Ok(result);
+        }
     }
 }

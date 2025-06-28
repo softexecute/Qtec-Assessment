@@ -15,10 +15,10 @@ namespace QtecAcc.Application.Commands
     {
         public DateTime Date { get; set; }
         public string Description { get; set; }
-        public List<JournalLineDto> Lines { get; set; } = new();
+        public List<JournalLineDto> Lines { get; set; }
     }
 
-    public class JournalLineDto
+    public record JournalLineDto
     {
         public int AccountId { get; set; }
         public decimal Debit { get; set; }
@@ -46,16 +46,27 @@ namespace QtecAcc.Application.Commands
             command.Parameters.Add(new SqlParameter("@Date", request.Date));
             command.Parameters.Add(new SqlParameter("@Description", request.Description));
 
-            // You may need to serialize JournalLine list as JSON or pass via TVP depending on how your SP is written
 
-            var journalIdParam = new SqlParameter("@NewJournalId", SqlDbType.Int)
+            // Prepare DataTable for TVP
+            var lineTable = new DataTable();
+            lineTable.Columns.Add("AccountId", typeof(int));
+            lineTable.Columns.Add("Debit", typeof(decimal));
+            lineTable.Columns.Add("Credit", typeof(decimal));
+
+            foreach (var line in request.Lines)
             {
-                Direction = ParameterDirection.Output
-            };
-            command.Parameters.Add(journalIdParam);
+                lineTable.Rows.Add(line.AccountId, line.Debit, line.Credit);
+            }
 
+            var lineParam = new SqlParameter("@Lines", SqlDbType.Structured)
+            {
+                TypeName = "dbo.JournalLineType", // Make sure this matches your TVP name
+                Value = lineTable
+            };
+
+            command.Parameters.Add(lineParam);
             await command.ExecuteNonQueryAsync(cancellationToken);
-            return (int)(journalIdParam.Value ?? 0);
+            return 1;
         }
     }
 }

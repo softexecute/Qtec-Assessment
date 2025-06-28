@@ -1,7 +1,7 @@
 # Ignore bin and obj folders recursively from root and all subfolders
 **/bin/*
 **/obj/*
-
+**/.vs/
 # Ignore node_modules from root and any subfolder
 **/node_modules/
 

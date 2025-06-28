@@ -1,10 +1,11 @@
+import { Fragment } from "react/jsx-runtime"
+import JournalList from "../components/journals/JournalsList";
+
 const JournalListPage = () => {
   return (
-    <div>
-      <h1 className="text-xl font-semibold mb-4">Journal Entries</h1>
-      {/* Replace below with <JournalTable /> */}
-      <p>This page will show all recorded journal entries.</p>
-    </div>
+   <Fragment>
+    <JournalList/>
+   </Fragment>
   );
 };
 

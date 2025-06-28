@@ -13,13 +13,11 @@ export const EndPoints: any = {
     accounts: {
         list: baseUrl+"/accounts", // Get Request
         create: baseUrl+"/accounts", // Post Request
+        trial_balance: baseUrl+"/accounts/trial-balance", // Get Request
     },
     journals: {
-        list: baseUrl+"/journals",
-        create: baseUrl+"/journals/create",
+        list: baseUrl+"/journal",
+        create: baseUrl+"/journal",
+        get: baseUrl+"/journal", // Use with ID, e.g., /journal/1
     },
-    reports: {
-        balanceSheet: baseUrl+"/reports/balance-sheet",
-        trialBalance: baseUrl+"/reports/trial-balance"
-    }
 }
