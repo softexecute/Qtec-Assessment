@@ -1,6 +1,7 @@
 ﻿using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
+using QtecAcc.Api.Handler;
 using QtecAcc.Application;
 using QtecAcc.Application.Validations;
 using QtecAcc.Infrastructure;
@@ -45,6 +46,8 @@ namespace QtecAcc
                 options.AddPolicy("AllowAll", builder =>
                     builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             });
+
+            services.AddExceptionHandler<CustomExceptionHandler>();
         }
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
@@ -54,6 +57,9 @@ namespace QtecAcc
                 app.UseSwaggerUI();
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseExceptionHandler(_ => { });
+
             app.UseHttpsRedirection();
 
             app.UseRouting();

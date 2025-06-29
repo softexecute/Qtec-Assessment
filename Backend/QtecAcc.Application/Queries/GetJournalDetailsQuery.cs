@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using QtecAcc.Application.DTOs;
 using QtecAcc.Infrastructure;
 using System.Data;
 
@@ -65,20 +66,7 @@ namespace QtecAcc.Application.Queries
         }
 
     }
-        public record JournalDetailDto
-        {
-            public int Id { get; set; }
-            public DateTime Date { get; set; }
-            public string? Description { get; set; }
-            public decimal TotalAmount { get; set; }
 
-            public List<JournalLinesDto> Lines { get; set; }
-        }
 
-        public record JournalLinesDto
-        {
-            public string? AccountName { get; set; }
-            public decimal Debit { get; set; }
-            public decimal Credit { get; set; }
-        }
+
     }

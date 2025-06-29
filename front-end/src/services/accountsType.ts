@@ -14,6 +14,7 @@ export const EndPoints: any = {
         list: baseUrl+"/accounts", // Get Request
         create: baseUrl+"/accounts", // Post Request
         trial_balance: baseUrl+"/accounts/trial-balance", // Get Request
+        delete: baseUrl+"/accounts", // Delete Request, use with ID, e.g., /accounts/1
     },
     journals: {
         list: baseUrl+"/journal",

@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
+using QtecAcc.Application.DTOs;
 using QtecAcc.Infrastructure;
 using System.Data;
 
@@ -42,11 +43,5 @@ namespace QtecAcc.Application.Queries
             return journals;
         }
     }
-    public class JournalDto
-    {
-        public int Id { get; set; }
-        public DateTime Date { get; set; }
-        public string? Description { get; set; }
-        public decimal TotalAmount { get; set; }
-    }
+
 }

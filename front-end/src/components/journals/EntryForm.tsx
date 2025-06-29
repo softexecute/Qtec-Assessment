@@ -21,6 +21,13 @@ const JournalEntryForm = () => {
         setLines([...lines, { accountId: "", debit: "", credit: "" }]);
     };
 
+
+    const RemoveLines = (index: number) => {
+        const updatedLines = lines.filter((_, i) => i !== index);
+        console.log("Updated Lines", updatedLines);
+        setLines(updatedLines);
+    };
+
     const totalDebit = lines.reduce(
         (sum, l) => sum + (parseFloat(l.debit) || 0),
         0
@@ -29,8 +36,7 @@ const JournalEntryForm = () => {
         (sum, l) => sum + (parseFloat(l.credit) || 0),
         0
     );
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
+    const handleSubmit = async () => {
         if (lines.length < 1) {
             alert("Please add at least one line item.");
             return;
@@ -41,32 +47,32 @@ const JournalEntryForm = () => {
             return;
         }
 
-        else{
-                    const entry = {
-            date,
-            description,
-            lines: lines.map((line) => ({
-                //@ts-ignore
-                accountId: line.accountId?.value, // Assuming accountId is an object with a value property
-                debit: parseFloat(line.debit) || 0,
-                credit: parseFloat(line.credit) || 0,
-            })),
-        };
+        else {
+            const entry = {
+                date,
+                description,
+                lines: lines.map((line) => ({
+                    //@ts-ignore
+                    accountId: line.accountId?.value, // Assuming accountId is an object with a value property
+                    debit: parseFloat(line.debit) || 0,
+                    credit: parseFloat(line.credit) || 0,
+                })),
+            };
 
-        let response = await fetch(EndPoints.journals.create, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(entry),
-        });
-        if (response.ok) {
-            alert("Journal entry created successfully!");
-            // Reset form
-            setLines([{ accountId: "", debit: "", credit: "" }]);
-            setDate("");
-            setDescription("");
-        }
+            let response = await fetch(EndPoints.journals.create, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(entry),
+            });
+            if (response.ok) {
+                alert("Journal entry created successfully!");
+                // Reset form
+                setLines([{ accountId: "", debit: "", credit: "" }]);
+                setDate("");
+                setDescription("");
+            }
         }
 
 
@@ -113,16 +119,14 @@ const JournalEntryForm = () => {
     };
 
 
+    const isEqual = (Number(totalDebit.toFixed(2)) === Number(totalCredit.toFixed(2))) && Number(totalDebit.toFixed(2)) > 0;
 
 
 
 
     return (
         <Fragment>
-            <form
-                onSubmit={handleSubmit}
-                className="max-w-4xl p-6 bg-white shadow-md rounded"
-            >
+            <div className="max-w-4xl px-6 py-1 bg-white shadow-md rounded" >
                 <h1 className="text-xl font-semibold mb-4">Journal Entry</h1>
                 <div className="mb-4">
                     <label className="block mb-1 font-medium">Date</label>
@@ -155,6 +159,7 @@ const JournalEntryForm = () => {
                                 <th className="p-2 border">Account</th>
                                 <th className="p-2 border w-40">Debit</th>
                                 <th className="p-2 border w-40">Credit</th>
+                                <th className="p-2 border w-20"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -163,7 +168,7 @@ const JournalEntryForm = () => {
                                     <td className="p-2 text-center">{index + 1}</td>
                                     <td className="p-2">
                                         <Select
-
+                                            value={line.accountId}
                                             onChange={(selected: any) =>
                                                 handleLineChange(index, "accountId", selected)
                                             }
@@ -196,6 +201,9 @@ const JournalEntryForm = () => {
                                             step="0.01"
                                         />
                                     </td>
+                                    <td className="text-center">
+                                        <button className="bg-red-400 px-2 py-2 rounded cursor-pointer text-white" type="button" onClick={() => RemoveLines(index)}>&times;</button>
+                                    </td>
                                 </tr>
 
                             ))}
@@ -220,13 +228,20 @@ const JournalEntryForm = () => {
                 </div>
                 <div className="clearfix text-end">
                     <button
-                        type="submit" className="w-2/12 bg-blue-600 text-white py-2 rounded hover:bg-blue-700"
-                        disabled={totalDebit !== totalCredit || lines.length < 1}
+                        type="button"
+                        onClick={handleSubmit}
+                        className="w-2/12 py-2 rounded 
+                                    text-white 
+                                    bg-blue-600 
+                                    hover:bg-blue-700 
+                                    disabled:bg-gray-400 
+                                    disabled:cursor-not-allowed"
+                        disabled={!isEqual || lines.length < 1}
                     >
-                        Submit Entry
+                        Save Transaction
                     </button>
                 </div>
-            </form>
+            </div>
         </Fragment>
     )
 }
