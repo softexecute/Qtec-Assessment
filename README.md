@@ -62,4 +62,4 @@ npm run dev
 5. Copy the dev URL (e.g., http://localhost:5173) and open it in your browser.
 
 
-# Thanks for beign here
+# Thanks for being here
